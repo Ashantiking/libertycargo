@@ -1,0 +1,28 @@
+{% load static %}
+
+<section id="subscribe">
+  <div class="container wow fadeInUp">
+    <div class="section-header">
+      <h2>Cargo Location</h2>
+      <p>You can find your cargo locations here</p>
+    </div>
+
+    <form method="POST" action="{% url 'search_shipping' %}">
+      <div class="form-row justify-content-center">
+        <div class="col-auto">
+          {% csrf_token %}
+          <input
+            type="text"
+            class="form-control"
+            id="searchField"
+            placeholder="cargo locations"
+            name="searched"
+          />
+        </div>
+        <div class="col-auto">
+          <button type="submit">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

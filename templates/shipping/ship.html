@@ -1,0 +1,73 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+
+  {% include "partials/_subscribe.html" %}
+  <!--==========================
+    F.A.Q Section
+  ============================-->
+  <section id="faq" class="wow fadeInUp">
+    <div class="container">
+      <div class="section-header">
+        <h2>This is you searched {{searched}}</h2>
+      </div>
+
+      {% if searched %}
+                            
+      <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>COUNT</th>
+                <th>NAME</th>
+                <th>TRACKING NUMBER</th>
+                <th>CATEGORY</th>
+                <th>FROM & SENDING DATE :</th>
+                <th>TO & ARRIVAL DATE :</th>
+                <th>HAS ARRIVED</th>
+              </tr>
+            </thead>
+            {% for shipping in shippings %}
+            <tbody>
+              <tr>
+                <td>{{forloop.counter}}</td>
+                {% for cargo in shipping.cargo.all %}
+                <td>{{ cargo }}</td>
+                {% endfor %}
+                <td>{{ shipping.track_number }}</td>
+                {% for category in shipping.category.all %}
+                                <td>{{ category }}</td>
+                                {% endfor %}
+                <td>{{ shipping.source_address }}
+                  <br/>
+                   {{ shipping.sending_date }}
+                </td>
+                <td>{{ shipping.destination_address }}
+                  <br/>
+                   {{ shipping.arrival_date }}
+                </td>
+                <td>{{ shipping.hasArived }}
+                </td>
+                               
+                
+
+               
+              </tr>
+            </tbody>
+
+            {% endfor %}
+          </table>
+        </div>
+          
+          {% else %}
+          <h1>You forget to search </h1>
+        </table>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <!--==========================
+    Subscribe Section
+  ============================-->
+</main>
+{% endblock %}
